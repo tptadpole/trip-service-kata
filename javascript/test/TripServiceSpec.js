@@ -16,8 +16,9 @@ describe("TripService", () => {
     assert.throws(() => tripService.getTripsByUser(null, null), NotLoggedException);
   });
 
-  it("should_not_return_tip_when_users_are_not_friend", () => {
+  it("should_not_return_trip_when_users_are_not_friend", () => {
     const tripService = new TripService(MockTripDAO);
+    strangeUser.addTrip("article");
     const result = tripService.getTripsByUser(strangeUser, loggedUser).length;
 
     assert.equal(0, result);
