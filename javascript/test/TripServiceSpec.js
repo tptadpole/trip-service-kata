@@ -8,6 +8,7 @@ const NotLoggedException = require("../src/NotLoggedException");
 
 const loggedUser = new User();
 const strangeUser = new User();
+const friend = new User();
 
 describe("TripService", () => {
   it("should_throw_error_when_user_us_not_logged_in", () => {
@@ -24,7 +25,12 @@ describe("TripService", () => {
     assert.equal(0, result);
   });
 
-  xit("should_return_tip_when_users_are_friend", () => {
-    //
+  it("should_return_trip_when_users_are_friend", () => {
+    const tripService = new TripService(MockTripDAO);
+    friend.addTrip("article");
+    friend.addFriend(loggedUser);
+    const result = tripService.getTripsByUser(friend, loggedUser).length;
+
+    assert.equal(1, result);
   });
 });
