@@ -9,7 +9,7 @@ describe("TripService", () => {
   it("should_throw_error_when_user_us_not_logged_in", () => {
     const tripService = new TripService(MockTripDAO);
 
-    assert.throws(tripService.getTripsByUser, NotLoggedException);
+    assert.throws(() => tripService.getTripsByUser(null, null), NotLoggedException);
   });
 
   xit("should_not_return_tip_when_users_are_not_friend", () => {
