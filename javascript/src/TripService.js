@@ -9,7 +9,7 @@ class TripService {
 
   getTripsByUser(user, loggedUser) {
     if (!loggedUser) throw NotLoggedException;
-    return user.isFriendsWith(loggedUser) ? [] : tripDAO.findTripsByUser(user);
+    return user.isFriendsWith(loggedUser) ? [] : this.tripDAO.findTripsByUser(user);
   }
 }
 
