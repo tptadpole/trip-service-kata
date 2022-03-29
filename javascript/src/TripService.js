@@ -1,14 +1,13 @@
 "use strict";
 
-let UserSession = require("./UserSession");
-let TripDAO = require("./TripDAO");
-
 class TripService {
-  getTripsByUser(user) {
-    let loggedUser = UserSession.getLoggedUser();
-    if (!loggedUser) throw new Error("User not logged in.");
+  constructor(tripDAO) {
+    this.tripDAO = tripDAO;
+  }
 
-    return user.isFriendsWith(loggedUser) ? [] : TripDAO.findTripsByUser(user);
+  getTripsByUser(user, loggedUser) {
+    if (!loggedUser) throw new Error("User not logged in.");
+    return user.isFriendsWith(loggedUser) ? [] : tripDAO.findTripsByUser(user);
   }
 }
 
