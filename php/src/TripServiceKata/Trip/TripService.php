@@ -4,13 +4,15 @@ namespace TripServiceKata\Trip;
 
 use TripServiceKata\User\User;
 use TripServiceKata\User\UserSession;
+use TripServiceKata\User\UserSessionHelper;
 use TripServiceKata\Exception\UserNotLoggedInException;
 
 class TripService
 {
-    public function getTripsByUser(User $user) {
+    public function getTripsByUser(User $user, UserSessionHelper $userSessionHelper)
+    {
         $tripList = array();
-        $loggedUser = UserSession::getInstance()->getLoggedUser();
+        $loggedUser = $userSessionHelper->getLoggedUser();
         $isFriend = false;
         if ($loggedUser != null) {
             foreach ($user->getFriends() as $friend) {

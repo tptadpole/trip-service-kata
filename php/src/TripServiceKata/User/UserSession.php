@@ -36,5 +36,4 @@ class UserSession
             'UserSession.getLoggedUser() should not be called in an unit test'
         );
     }
-
 }
